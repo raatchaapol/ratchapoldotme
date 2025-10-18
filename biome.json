@@ -7,8 +7,19 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": []
+		"ignore": ["dist", "src/router.ts"]
 	},
+	"overrides": [
+		{
+			"include": ["tsconfig*.json", "jsconfig*.json"],
+			"json": {
+				"parser": {
+					"allowComments": true,
+					"allowTrailingCommas": true
+				}
+			}
+		}
+	],
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab"
@@ -27,6 +38,13 @@
 			"a11y": {
 				"noBlankTarget": "info",
 				"useButtonType": "warn"
+			},
+			"correctness": {
+				"useExhaustiveDependencies": "warn",
+				"useHookAtTopLevel": "error"
+			},
+			"nursery": {
+				"useSortedClasses": "warn"
 			}
 		}
 	},
