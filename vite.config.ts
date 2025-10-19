@@ -7,6 +7,7 @@ export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), "");
 
     return {
+        base: "/",
         plugins: [react(), generouted(), tsconfigPaths()],
         server: {
             host: env.VITE_HOST,
@@ -23,10 +24,7 @@ export default defineConfig(({ mode }) => {
                 output: {
                     manualChunks: (id) => {
                         if (id.includes("node_modules")) {
-                            if (
-                                id.includes("react") ||
-                                id.includes("react-dom")
-                            ) {
+                            if (id.match(/\/react\/|\/react-dom\//)) {
                                 return "react-vendor";
                             }
                             if (
@@ -40,6 +38,9 @@ export default defineConfig(({ mode }) => {
                                 id.includes("@emotion")
                             ) {
                                 return "chakra-vendor";
+                            }
+                            if (id.includes("react-icons")) {
+                                return "icons-vendor";
                             }
                             return "vendor";
                         }
