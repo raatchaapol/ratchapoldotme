@@ -1,9 +1,14 @@
 import { Provider } from "@/components/ui/provider";
-import { Routes } from "@generouted/react-router";
 import { createRoot } from "react-dom/client";
+import { BrowserRouter, Route, Routes } from "react-router";
+import Home from "./pages/index";
 
 createRoot(document.getElementById("root")!).render(
-    <Provider>
-        <Routes />
-    </Provider>
+    <BrowserRouter>
+        <Provider>
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </Provider>
+    </BrowserRouter>
 );
