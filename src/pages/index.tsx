@@ -4,11 +4,11 @@ import {
     Button,
     Container,
     Flex,
-    Heading,
     Text,
     Box,
     VStack,
     HStack,
+    Heading,
 } from "@chakra-ui/react";
 import { Link } from "react-router";
 import { MainLayout } from "@/components/common/MainLayout";
@@ -70,7 +70,10 @@ const Home: FunctionComponent = () => {
 
                     {/* Main Title */}
                     <VStack gap={6}>
-                        <GlitchText color="green">
+                        <GlitchText
+                            color="green"
+                            secondaryText="SOFTWARE ENGINEER"
+                        >
                             <Heading
                                 as="h1"
                                 fontSize={{ base: "5xl", md: "7xl" }}
