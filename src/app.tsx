@@ -1,14 +1,22 @@
 import { Provider } from "@/components/ui/provider";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router";
-import Home from "./pages/index";
+import { RouterProvider, createBrowserRouter, Outlet } from "react-router";
+import { routes } from "@generouted/react-router";
+
+// Wrap all routes with the Provider
+const routesWithProvider = [
+    {
+        element: (
+            <Provider>
+                <Outlet />
+            </Provider>
+        ),
+        children: routes,
+    },
+];
+
+const router = createBrowserRouter(routesWithProvider);
 
 createRoot(document.getElementById("root")!).render(
-    <BrowserRouter>
-        <Provider>
-            <Routes>
-                <Route path="/" element={<Home />} />
-            </Routes>
-        </Provider>
-    </BrowserRouter>
+    <RouterProvider router={router} />
 );
