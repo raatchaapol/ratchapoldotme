@@ -1,8 +1,8 @@
 "use client";
 
 import { Box, Flex } from "@chakra-ui/react";
-import { Navbar } from "./Navbar";
-import { Footer } from "./Footer";
+import { Navbar } from "@/components/layout/Navbar/Navbar";
+import { Footer } from "@/components/layout/Footer/Footer";
 import { hackerColors } from "@/theme/colors";
 import type { FunctionComponent, ReactNode } from "react";
 

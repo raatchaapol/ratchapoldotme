@@ -14,8 +14,8 @@ export const projects: Project[] = [
             "High-performance typeahead search with instant autocomplete suggestions. Built with React and optimized for speed and user experience.",
         tags: ["React", "Frontend", "Performance", "Search"],
         link: "https://typeahead.ratchapol.me/",
-        github: "https://github.com/ratchapol/typeahead",
-        difficulty: 4,
+        github: "https://github.com/raatchaapol/typeahead-search",
+        difficulty: 3,
     },
     {
         title: "Portfolio Website",

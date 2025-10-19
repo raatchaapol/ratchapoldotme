@@ -7,12 +7,12 @@ export interface SocialLink {
 export const socialLinks: SocialLink[] = [
     {
         label: "GitHub",
-        url: "https://github.com",
+        url: "https://github.com/raatchaapol",
         icon: "github",
     },
     {
         label: "LinkedIn",
-        url: "https://linkedin.com",
+        url: "https://www.linkedin.com/in/ratchapol-thaworn/",
         icon: "linkedin",
     },
     {
