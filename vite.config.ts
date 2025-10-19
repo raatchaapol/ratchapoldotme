@@ -47,6 +47,9 @@ export default defineConfig(({ mode }) => {
                         }
                     },
                 },
+                input: {
+                    main: path.resolve(__dirname, "index.html"),
+                },
             },
         },
         // Tree shaking optimizations
