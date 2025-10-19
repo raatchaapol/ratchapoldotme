@@ -26,6 +26,7 @@ export default defineConfig(({ mode }) => {
             target: "esnext",
             outDir: "dist",
             sourcemap: true,
+            chunkSizeWarningLimit: 600,
             rollupOptions: {
                 output: {
                     manualChunks: (id) => {
