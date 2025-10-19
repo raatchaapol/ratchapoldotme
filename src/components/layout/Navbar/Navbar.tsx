@@ -16,6 +16,22 @@ import { useColorMode } from "@/components/ui/color-mode";
 import { hackerColors } from "@/theme/colors";
 import { NeonText } from "@/components/gamification/NeonText";
 import { NAV_LINKS } from "@/shared/constants";
+import {
+    navbarAnimations,
+    navContainerStyles,
+    logoLinkStyles,
+    logoIconStyles,
+    navLinkStyles,
+    navLinkCss,
+    themeToggleStyles,
+    mobileMenuToggleStyles,
+    mobileDrawerStyles,
+    mobileMenuHeaderStyles,
+    mobileMenuCloseButtonStyles,
+    mobileMenuItemStyles,
+    mobileMenuFooterStyles,
+    mobileOverlayStyles,
+} from "./Navbar.styles";
 import type { FunctionComponent } from "react";
 
 export const Navbar: FunctionComponent = () => {
@@ -38,31 +54,8 @@ export const Navbar: FunctionComponent = () => {
     const NavLink = ({ href, label }: { href: string; label: string }) => (
         <Link
             href={href}
-            color={hackerColors.textPrimary}
-            textDecoration="none"
-            fontFamily="monospace"
-            fontSize={{ base: "lg", md: "sm" }}
-            fontWeight="medium"
-            position="relative"
-            transition="all 0.3s ease"
-            _hover={{
-                color: hackerColors.neonGreen,
-                textShadow: hackerColors.glowGreen,
-                transform: "translateX(4px)",
-            }}
-            css={{
-                "&::before": {
-                    content: '"> "',
-                    color: hackerColors.neonCyan,
-                    opacity: 0,
-                    marginRight: "-16px",
-                    transition: "all 0.3s ease",
-                },
-                "&:hover::before": {
-                    opacity: 1,
-                    marginRight: "4px",
-                },
-            }}
+            {...navLinkStyles}
+            css={navLinkCss}
             onClick={() => setIsMobileMenuOpen(false)}
         >
             {label}
@@ -71,94 +64,14 @@ export const Navbar: FunctionComponent = () => {
 
     return (
         <>
-            <style>{`
-                @keyframes glitch-navbar {
-                    0%, 100% {
-                        text-shadow: 0 0 10px ${hackerColors.neonGreen};
-                    }
-                    25% {
-                        text-shadow: 2px 0 10px ${hackerColors.neonCyan}, -2px 0 10px ${hackerColors.neonPink};
-                    }
-                    50% {
-                        text-shadow: 0 0 10px ${hackerColors.neonGreen};
-                    }
-                    75% {
-                        text-shadow: -2px 0 10px ${hackerColors.neonCyan}, 2px 0 10px ${hackerColors.neonPink};
-                    }
-                }
+            <style>{navbarAnimations}</style>
 
-                .navbar-glitch:hover {
-                    animation: glitch-navbar 0.3s ease-in-out;
-                }
-
-                .mobile-menu-enter {
-                    animation: slideInRight 0.3s ease-out;
-                }
-
-                @keyframes slideInRight {
-                    from {
-                        transform: translateX(100%);
-                        opacity: 0;
-                    }
-                    to {
-                        transform: translateX(0);
-                        opacity: 1;
-                    }
-                }
-
-                .cyber-border {
-                    position: relative;
-                }
-
-                .cyber-border::after {
-                    content: '';
-                    position: absolute;
-                    bottom: 0;
-                    left: 0;
-                    right: 0;
-                    height: 2px;
-                    background: linear-gradient(90deg, 
-                        transparent 0%, 
-                        ${hackerColors.neonCyan} 20%, 
-                        ${hackerColors.neonGreen} 50%, 
-                        ${hackerColors.neonCyan} 80%, 
-                        transparent 100%
-                    );
-                    box-shadow: 0 0 10px ${hackerColors.neonGreen};
-                }
-            `}</style>
-
-            <Box
-                as="nav"
-                className="cyber-border"
-                bg={hackerColors.darkBg2}
-                position="sticky"
-                top="0"
-                zIndex="100"
-                boxShadow={`0 4px 20px rgba(0, 255, 65, 0.15)`}
-                backdropFilter="blur(10px)"
-            >
+            <Box as="nav" className="cyber-border" {...navContainerStyles}>
                 <Container maxW="container.xl" py={4}>
                     <Flex justify="space-between" align="center">
                         {/* Logo with Terminal Icon */}
-                        <Link
-                            href="/"
-                            display="flex"
-                            alignItems="center"
-                            gap={2}
-                            textDecoration="none"
-                            className="navbar-glitch"
-                            transition="all 0.3s"
-                            _hover={{
-                                transform: "scale(1.05)",
-                            }}
-                        >
-                            <Box
-                                as={FaTerminal}
-                                color={hackerColors.neonGreen}
-                                fontSize="lg"
-                                filter={`drop-shadow(0 0 8px ${hackerColors.neonGreen})`}
-                            />
+                        <Link href="/" {...logoLinkStyles}>
+                            <Box as={FaTerminal} {...logoIconStyles} />
                             <NeonText color="green" glow as="span">
                                 ratchapol.me
                             </NeonText>
@@ -181,18 +94,9 @@ export const Navbar: FunctionComponent = () => {
                         <HStack gap={2}>
                             {/* Theme Toggle */}
                             <IconButton
-                                size="sm"
-                                bg="transparent"
-                                border={`1px solid ${hackerColors.borderNeon}`}
-                                color={hackerColors.neonGreen}
-                                _hover={{
-                                    bg: hackerColors.darkBg3,
-                                    boxShadow: hackerColors.glowGreen,
-                                    transform: "translateY(-2px)",
-                                }}
+                                {...themeToggleStyles}
                                 onClick={toggleColorMode}
                                 aria-label="Toggle color mode"
-                                transition="all 0.3s"
                             >
                                 {colorMode === "light" ? <FaMoon /> : <FaSun />}
                             </IconButton>
@@ -200,20 +104,11 @@ export const Navbar: FunctionComponent = () => {
                             {/* Mobile Menu Toggle */}
                             {isMobile && (
                                 <IconButton
-                                    size="sm"
-                                    bg="transparent"
-                                    border={`1px solid ${hackerColors.neonCyan}`}
-                                    color={hackerColors.neonCyan}
-                                    _hover={{
-                                        bg: hackerColors.darkBg3,
-                                        boxShadow: hackerColors.glowCyan,
-                                        transform: "rotate(90deg)",
-                                    }}
+                                    {...mobileMenuToggleStyles}
                                     onClick={() =>
                                         setIsMobileMenuOpen(!isMobileMenuOpen)
                                     }
                                     aria-label="Toggle menu"
-                                    transition="all 0.3s"
                                 >
                                     {isMobileMenuOpen ? (
                                         <FaTimes />
@@ -229,25 +124,9 @@ export const Navbar: FunctionComponent = () => {
 
             {/* Mobile Menu Drawer */}
             {isMobile && isMobileMenuOpen && (
-                <Box
-                    position="fixed"
-                    top="0"
-                    right="0"
-                    bottom="0"
-                    width="280px"
-                    bg={hackerColors.darkBg}
-                    borderLeft={`2px solid ${hackerColors.neonCyan}`}
-                    boxShadow={`-4px 0 30px rgba(0, 212, 255, 0.3)`}
-                    zIndex="99"
-                    className="mobile-menu-enter"
-                    overflowY="auto"
-                >
+                <Box {...mobileDrawerStyles}>
                     {/* Mobile Menu Header */}
-                    <Box
-                        p={6}
-                        borderBottom={`1px solid ${hackerColors.borderNeon}`}
-                        bg={hackerColors.darkBg2}
-                    >
+                    <Box {...mobileMenuHeaderStyles}>
                         <HStack justify="space-between" mb={2}>
                             <HStack gap={2}>
                                 <FaTerminal
@@ -263,12 +142,7 @@ export const Navbar: FunctionComponent = () => {
                                 </Text>
                             </HStack>
                             <IconButton
-                                size="xs"
-                                bg="transparent"
-                                color={hackerColors.neonPink}
-                                _hover={{
-                                    transform: "rotate(90deg)",
-                                }}
+                                {...mobileMenuCloseButtonStyles}
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 aria-label="Close menu"
                             >
@@ -289,12 +163,10 @@ export const Navbar: FunctionComponent = () => {
                         {NAV_LINKS.map((link, index) => (
                             <Box
                                 key={link.href}
-                                py={4}
-                                borderBottom={
-                                    index < NAV_LINKS.length - 1
-                                        ? `1px solid ${hackerColors.darkBg3}`
-                                        : "none"
-                                }
+                                {...mobileMenuItemStyles(
+                                    index,
+                                    NAV_LINKS.length
+                                )}
                             >
                                 <HStack gap={3}>
                                     <Text
@@ -314,15 +186,7 @@ export const Navbar: FunctionComponent = () => {
                     </VStack>
 
                     {/* Mobile Menu Footer */}
-                    <Box
-                        position="absolute"
-                        bottom="0"
-                        left="0"
-                        right="0"
-                        p={6}
-                        borderTop={`1px solid ${hackerColors.borderNeon}`}
-                        bg={hackerColors.darkBg2}
-                    >
+                    <Box {...mobileMenuFooterStyles}>
                         <Text
                             fontSize="xs"
                             fontFamily="monospace"
@@ -341,14 +205,7 @@ export const Navbar: FunctionComponent = () => {
             {/* Mobile Menu Overlay */}
             {isMobile && isMobileMenuOpen && (
                 <Box
-                    position="fixed"
-                    top="0"
-                    left="0"
-                    right="0"
-                    bottom="0"
-                    bg="rgba(0, 0, 0, 0.7)"
-                    backdropFilter="blur(4px)"
-                    zIndex="98"
+                    {...mobileOverlayStyles}
                     onClick={() => setIsMobileMenuOpen(false)}
                 />
             )}

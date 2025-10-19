@@ -28,7 +28,7 @@ export const TerminalBox: FunctionComponent<TerminalBoxProps> = ({
             border={`1px solid ${hackerColors.borderNeon}`}
             borderRadius="4px"
             bg={hackerColors.darkBg3}
-            p={4}
+            p={5}
             position="relative"
             overflow="hidden"
             _before={{
@@ -47,7 +47,7 @@ export const TerminalBox: FunctionComponent<TerminalBoxProps> = ({
             {title && (
                 <HStack
                     mb={4}
-                    pb={2}
+                    pb={3}
                     borderBottom={`1px solid ${hackerColors.borderNeon}`}
                 >
                     <Box display="flex" gap={1}>
@@ -73,9 +73,10 @@ export const TerminalBox: FunctionComponent<TerminalBoxProps> = ({
                         />
                     </Box>
                     <Text
-                        fontSize="xs"
+                        fontSize="sm"
                         color={selectedColor}
                         fontFamily="monospace"
+                        fontWeight="medium"
                     >
                         {title}
                     </Text>
@@ -83,11 +84,7 @@ export const TerminalBox: FunctionComponent<TerminalBoxProps> = ({
             )}
 
             {/* Content */}
-            <Box
-                color={hackerColors.textPrimary}
-                fontFamily="monospace"
-                fontSize="sm"
-            >
+            <Box color={hackerColors.textPrimary} fontFamily="monospace">
                 {children}
             </Box>
         </Box>

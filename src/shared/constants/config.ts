@@ -3,8 +3,9 @@ export const PERSONAL_INFO = {
     EMAIL: "ratchapol.thaworn@gmail.com",
     GITHUB: "https://github.com/raatchaapol",
     LINKEDIN: "https://www.linkedin.com/in/ratchapol-thaworn/",
-    RESUME_URL: "/resume.pdf",
-    RESUME_FILENAME: "Pete_Resume.pdf",
+    RESUME_URL:
+        "https://k49ljbwbrdcfpeyj.public.blob.vercel-storage.com/ratchapol_thaworn_cv_en.pdf",
+    RESUME_FILENAME: "Ratchapol_Thaworn_CV.pdf",
 } as const;
 
 export const STATS = {

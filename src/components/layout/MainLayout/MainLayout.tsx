@@ -42,7 +42,7 @@ export const MainLayout: FunctionComponent<MainLayoutProps> = ({
             `}</style>
 
             <Navbar />
-            <Box as="main" flex="1" position="relative" overflow="hidden">
+            <Box as="main" flex="1" position="relative">
                 {/* Subtle background grid effect */}
                 <Box
                     position="fixed"

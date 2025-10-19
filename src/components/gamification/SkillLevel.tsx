@@ -17,12 +17,17 @@ export const SkillLevel: FunctionComponent<SkillLevelProps> = ({
     const percentage = (level / 10) * 100;
 
     return (
-        <VStack align="start" width="100%" gap={1}>
+        <VStack align="start" width="100%" gap={2}>
             <HStack justify="space-between" width="100%">
-                <Text fontSize="sm" color={hackerColors.textPrimary}>
+                <Text
+                    fontSize="sm"
+                    color={hackerColors.textPrimary}
+                    fontFamily="monospace"
+                    fontWeight="medium"
+                >
                     {name}
                 </Text>
-                <NeonText color="cyan" glow>
+                <NeonText color="cyan" glow fontSize="sm">
                     {level}/10
                 </NeonText>
             </HStack>
