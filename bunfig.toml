@@ -1,0 +1,8 @@
+[resolve]
+extensions = [".ts", ".tsx", ".mts", ".mjs", ".js", ".jsx", ".json"]
+
+[resolve.alias]
+components = "./src/components"
+lib = "./src/lib"
+assets = "./src/assets"
+router = "./src/router.ts"
