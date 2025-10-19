@@ -2,13 +2,27 @@ import generouted from "@generouted/react-router/plugin";
 import react from "@vitejs/plugin-react-oxc";
 import { defineConfig, loadEnv } from "vite";
 import tsconfigPaths from "vite-tsconfig-paths";
+import { lazyGeneroutedPlugin } from "./plugins/vite-lazy-generouted";
 
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, process.cwd(), "");
 
     return {
         base: "/",
-        plugins: [react(), generouted(), tsconfigPaths()],
+        plugins: [
+            react(),
+            lazyGeneroutedPlugin(),
+            generouted({
+                source: {
+                    routes: [
+                        "./src/pages/**/*.{jsx,tsx}",
+                        "!/src/pages/**/(_app|404|_*|\\[+*).{jsx,tsx}",
+                    ],
+                    modals: "./src/pages/**/[+]*.{jsx,tsx}",
+                },
+            }),
+            tsconfigPaths(),
+        ],
         server: {
             host: env.VITE_HOST,
             port:
