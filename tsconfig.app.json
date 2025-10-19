@@ -36,8 +36,8 @@
 			"@assets/*": [
 				"./src/assets/*"
 			],
-			"@router": [
-				"./src/router.ts"
+			"@ui": [
+				"./src/components/ui"
 			]
 		}
 	},

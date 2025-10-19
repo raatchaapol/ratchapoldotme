@@ -12,15 +12,7 @@ export default defineConfig(({ mode }) => {
         plugins: [
             react(),
             lazyGeneroutedPlugin(),
-            generouted({
-                source: {
-                    routes: [
-                        "./src/pages/**/*.{jsx,tsx}",
-                        "!/src/pages/**/(_app|404|_*|\\[+*).{jsx,tsx}",
-                    ],
-                    modals: "./src/pages/**/[+]*.{jsx,tsx}",
-                },
-            }),
+            generouted(),
             tsconfigPaths(),
         ],
         server: {
