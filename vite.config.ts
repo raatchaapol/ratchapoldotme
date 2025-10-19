@@ -32,10 +32,13 @@ export default defineConfig(({ mode }) => {
             target: "esnext",
             outDir: "dist",
             sourcemap: false,
+            minify: "esbuild",
             chunkSizeWarningLimit: 600,
+            reportCompressedSize: true,
             rollupOptions: {
                 output: {
                     manualChunks: (id) => {
+                        // Split router bundle for better caching
                         if (
                             id.includes("node_modules/react-router") ||
                             id.includes("node_modules/@generouted")
@@ -45,6 +48,14 @@ export default defineConfig(({ mode }) => {
                     },
                 },
             },
+        },
+        // Tree shaking optimizations
+        define: {
+            "process.env.NODE_ENV": JSON.stringify(mode),
+        },
+        ssr: {
+            // Mark external dependencies for SSR (if needed later)
+            noExternal: ["@chakra-ui/react"],
         },
     };
 });
