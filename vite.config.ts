@@ -8,7 +8,16 @@ export default defineConfig(({ mode }) => {
 
     return {
         base: "/",
-        plugins: [react(), generouted(), tsconfigPaths()],
+        plugins: [
+            react(),
+            generouted({
+                source: {
+                    routes: "./src/pages/**/{[\\w[-]*,index}.{jsx,tsx}",
+                    modals: "./src/pages/**/[+]*.{jsx,tsx}",
+                },
+            }),
+            tsconfigPaths(),
+        ],
         server: {
             host: env.VITE_HOST,
             port:
